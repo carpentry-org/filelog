@@ -1,0 +1,17 @@
+(load "git@github.com:carpentry-org/file@0.0.1")
+(load "git@github.com:carpentry-org/log@0.0.4")
+
+(defmodule FileLog
+  (def FILENAME "")
+
+  (defn log [r]
+    (let-do [f (File.open-with FILENAME "a+")]
+      (File.write &f &(LogRecord.pretty r))
+      (File.close f)))
+
+  (defn install [filename lvl]
+    (do
+      (set! FILENAME filename)
+      (Log.set-level lvl)
+      (Log.set-logger log)))
+)
