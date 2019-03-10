@@ -6,7 +6,7 @@
 
   (defn log [r]
     (let-do [f (File.open-with FILENAME "a+")]
-      (File.write &f &(LogRecord.pretty r))
+      (File.write &f &(fmt "%s\n" &(LogRecord.pretty r)))
       (File.close f)))
 
   (defn install [filename lvl]
