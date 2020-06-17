@@ -1,17 +1,19 @@
-(load "git@github.com:carpentry-org/file@0.0.1")
-(load "git@github.com:carpentry-org/log@0.0.4")
+(load "git@github.com:carpentry-org/file@0.1.1")
+(load "git@github.com:carpentry-org/log@0.1.0")
 
 (defmodule FileLog
   (def FILENAME "")
 
-  (defn log [r]
-    (let-do [f (File.open-with FILENAME "a+")]
-      (File.write &f &(fmt "%s\n" &(LogRecord.pretty r)))
+  (defn log- [r]
+    (let-do [f (Result.unsafe-from-success (File.open-with FILENAME "a+"))]
+      (ignore
+        (Result.unsafe-from-success ; this forces a crash if we can’t write
+          (File.write &f &(fmt "%s\n" &(LogRecord.pretty r)))))
       (File.close f)))
 
   (defn install [filename lvl]
     (do
       (set! FILENAME filename)
       (Log.set-level lvl)
-      (Log.set-logger log)))
+      (Log.set-logger log-)))
 )

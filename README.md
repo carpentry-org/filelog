@@ -7,7 +7,7 @@ output to a file of the user’s choosing.
 ## Example
 
 ```clojure
-(load "git@github.com:carpentry-org/filelog@0.0.2")
+(load "git@github.com:carpentry-org/filelog@0.0.3")
 
 (defn main []
   (do
@@ -18,6 +18,11 @@ output to a file of the user’s choosing.
   )
 )
 ```
+
+## Caveats
+
+Errors opening or writing to the file will result in a more or less graceful
+crash. This is intended behavior, but we’re open to hearing better solutions.
 
 <hr/>
 
