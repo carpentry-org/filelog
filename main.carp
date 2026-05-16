@@ -7,13 +7,11 @@
   (defn log- [r]
     (let-do [f (Result.unsafe-from-success (File.open-with FILENAME "a+"))]
       (ignore
-        (Result.unsafe-from-success ; this forces a crash if we can’t write
-          (File.write &f &(fmt "%s\n" &(LogRecord.pretty r)))))
+        (Result.unsafe-from-success
+          ; this forces a crash if we can’t write
+          (File.write &f &(fmt "%s
+" &(LogRecord.pretty r)))))
       (File.close f)))
 
   (defn install [filename lvl]
-    (do
-      (set! FILENAME filename)
-      (Log.set-level lvl)
-      (Log.set-logger log-)))
-)
+    (do (set! FILENAME filename) (Log.set-level lvl) (Log.set-logger log-))))
