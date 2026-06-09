@@ -21,8 +21,10 @@ output to a file of the user’s choosing.
 
 ## Caveats
 
-Errors opening or writing to the file will result in a more or less graceful
-crash. This is intended behavior, but we’re open to hearing better solutions.
+Errors opening or writing to the file are silently dropped—the log entry is
+simply discarded. A logger should never crash the program it serves, so if you
+need guaranteed delivery (e.g. for auditing), consider verifying that the log
+path is writable at startup.
 
 <hr/>
 
