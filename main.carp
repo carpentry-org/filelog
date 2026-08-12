@@ -1,10 +1,13 @@
-(load "git@github.com:carpentry-org/file@0.1.2")
+(load "git@github.com:carpentry-org/file@0.3.0")
 (load "git@github.com:carpentry-org/log@0.1.1")
 
 (defmodule FileLog
   (def FILENAME "")
 
   (defn log- [r]
+    ; crashing is the contract: a logger that cannot open its file must not
+    ; carry on as though it logged
+    ; angler-disable-next-line unsafe-result-unwrap
     (let-do [f (Result.unsafe-from-success (File.open-with FILENAME "a+"))]
       (ignore
         (Result.unsafe-from-success

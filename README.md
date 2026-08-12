@@ -7,7 +7,7 @@ output to a file of the user’s choosing.
 ## Example
 
 ```clojure
-(load "git@github.com:carpentry-org/filelog@0.0.4")
+(load "git@github.com:carpentry-org/filelog@0.0.5")
 
 (defn main []
   (do
