@@ -32,7 +32,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <signal.h>
-#include "/Users/veitheller/.cache/carp/libs/github.com_COLON_carpentry-org/file/0.1.2/file_helper.h"
+#include "/Users/veitheller/.cache/carp/libs/github.com_COLON_carpentry-org/file/0.3.0/file_helper.h"
 
 
 
@@ -71,6 +71,7 @@ typedef struct Result__Array__String_String Result__Array__String_String;
 typedef struct Result__Array__Uint16_int Result__Array__Uint16_int;
 typedef struct Result__Array__Uint32_int Result__Array__Uint32_int;
 typedef struct Result__Array__Uint64_int Result__Array__Uint64_int;
+typedef struct Result__Array__uint8_t_String Result__Array__uint8_t_String;
 typedef struct Result__Char_String Result__Char_String;
 typedef struct Result__FILE_MUL__String Result__FILE_MUL__String;
 typedef struct Result__File_String Result__File_String;
@@ -80,6 +81,7 @@ typedef struct Result__Uint32_Array__uint8_t Result__Uint32_Array__uint8_t;
 typedef struct Result__Uint64_Array__uint8_t Result__Uint64_Array__uint8_t;
 typedef struct Result__bool_String Result__bool_String;
 typedef struct Result__int_String Result__int_String;
+typedef struct Result__uint8_t_String Result__uint8_t_String;
 typedef struct WalkOptions WalkOptions;
 
 
@@ -232,6 +234,22 @@ struct Result__int_String {
 #define Result__int_String_Error_tag 1
 
 // Depth 3
+struct Result__uint8_t_String {
+    union {
+    struct {
+        uint8_t member0;
+    } Success;
+    struct {
+        String member0;
+    } Error;
+    char __dummy;
+    } u;
+    char _tag;
+};
+#define Result__uint8_t_String_Success_tag 0
+#define Result__uint8_t_String_Error_tag 1
+
+// Depth 3
 struct LogRecord {
     int level;
     String msg;
@@ -294,6 +312,9 @@ typedef bool(*Fn__Char_bool)(Char);
 
 // Depth 4
 typedef int(*Fn__Char_int)(Char);
+
+// Depth 4
+typedef uint8_t(*Fn__Char_uint8_t)(Char);
 
 // Depth 4
 typedef Long(*Fn__Long_Long_Long)(Long, Long);
@@ -392,6 +413,9 @@ typedef void(*Fn__String_MUL__int_String_MUL__void)(String*, int, String*);
 typedef String(*Fn__String_MUL__int_int_String)(String*, int, int);
 
 // Depth 4
+typedef void(*Fn__String_MUL__int_void)(String*, int);
+
+// Depth 4
 typedef bool(*Fn__String_MUL__uint8_t_MUL__bool)(String*, uint8_t*);
 
 // Depth 4
@@ -402,6 +426,9 @@ typedef void(*Fn__String_MUL__void)(String*);
 
 // Depth 4
 typedef String(*Fn__String_String)(String);
+
+// Depth 4
+typedef void(*Fn__String_int_String_MUL__int_void)(String, int, String*, int);
 
 // Depth 4
 typedef Char(*Fn___Char)();
@@ -512,6 +539,9 @@ typedef uint8_t(*Fn__int_uint8_t)(int);
 typedef void(*Fn__int_void)(int);
 
 // Depth 4
+typedef Char(*Fn__uint8_t_Char)(uint8_t);
+
+// Depth 4
 typedef String(*Fn__uint8_t_MUL__String)(uint8_t*);
 
 // Depth 4
@@ -552,6 +582,22 @@ struct Result__Array__String_String {
 #define Result__Array__String_String_Error_tag 1
 
 // Depth 6
+struct Result__Array__uint8_t_String {
+    union {
+    struct {
+        Array__uint8_t member0;
+    } Success;
+    struct {
+        String member0;
+    } Error;
+    char __dummy;
+    } u;
+    char _tag;
+};
+#define Result__Array__uint8_t_String_Success_tag 0
+#define Result__Array__uint8_t_String_Error_tag 1
+
+// Depth 6
 typedef Result__Char_String(*Fn__Char_Result__Char_String)(Char);
 
 // Depth 6
@@ -576,13 +622,16 @@ typedef String(*Fn__Maybe__String_String)(Maybe__String);
 typedef String(*Fn__Maybe__String_String_String)(Maybe__String, String);
 
 // Depth 6
+typedef Result__uint8_t_String(*Fn__Result__Char_String_Fn__Char_uint8_t_MUL__Result__uint8_t_String)(Result__Char_String, Lambda*);
+
+// Depth 6
+typedef bool(*Fn__Result__int_String_MUL__bool)(Result__int_String*);
+
+// Depth 6
 typedef int(*Fn__Result__int_String_int)(Result__int_String);
 
 // Depth 6
 typedef Result__int_String(*Fn__String_MUL__Fn__String_MUL__void_MUL__WalkOptions_MUL__Result__int_String)(String*, Lambda*, WalkOptions*);
-
-// Depth 6
-typedef void(*Fn__String_MUL__Fn__String_MUL__void_MUL__WalkOptions_MUL__void)(String*, Lambda*, WalkOptions*);
 
 // Depth 6
 typedef Maybe__String(*Fn__String_Maybe__String)(String);
@@ -598,6 +647,9 @@ typedef Result__bool_String(*Fn__String_Result__bool_String)(String);
 
 // Depth 6
 typedef Result__int_String(*Fn__String_Result__int_String)(String);
+
+// Depth 6
+typedef Result__uint8_t_String(*Fn__String_Result__uint8_t_String)(String);
 
 // Depth 6
 typedef String(*Fn__WalkOptions_MUL__String)(WalkOptions*);
@@ -646,6 +698,9 @@ typedef LogRecord(*Fn__int_String_String_int_LogRecord)(int, String, String, int
 
 // Depth 6
 typedef Maybe__uint8_t(*Fn__uint8_t_Maybe__uint8_t)(uint8_t);
+
+// Depth 6
+typedef Result__uint8_t_String(*Fn__uint8_t_Result__uint8_t_String)(uint8_t);
 
 // Depth 7
 typedef Array__Char(*Fn__Array__Char_Array__Char)(Array__Char);
@@ -709,6 +764,9 @@ typedef String(*Fn__Array__uint8_t_MUL__String)(Array__uint8_t*);
 
 // Depth 7
 typedef int(*Fn__Array__uint8_t_MUL__int)(Array__uint8_t*);
+
+// Depth 7
+typedef Array__uint8_t(*Fn__Array__uint8_t_MUL__int_Array__uint8_t)(Array__uint8_t*, int);
 
 // Depth 7
 typedef Maybe__uint8_t(*Fn__Array__uint8_t_MUL__int_Maybe__uint8_t)(Array__uint8_t*, int);
@@ -786,6 +844,9 @@ typedef Array__Char(*Fn__int_Fn___Char_MUL__Array__Char)(int, Lambda*);
 typedef Result__Array__String_String(*Fn__Array__String_Result__Array__String_String)(Array__String);
 
 // Depth 9
+typedef Result__Array__uint8_t_String(*Fn__Array__uint8_t_Result__Array__uint8_t_String)(Array__uint8_t);
+
+// Depth 9
 typedef Result__Array__String_String(*Fn__Result__int_String_Fn__int_Array__String_MUL__Result__Array__String_String)(Result__int_String, Lambda*);
 
 // Depth 9
@@ -796,6 +857,9 @@ typedef Result__Array__String_String(*Fn__String_MUL__WalkOptions_MUL__Result__A
 
 // Depth 9
 typedef Result__Array__String_String(*Fn__String_Result__Array__String_String)(String);
+
+// Depth 9
+typedef Result__Array__uint8_t_String(*Fn__String_Result__Array__uint8_t_String)(String);
 
 // Depth 10
 typedef Array__Array__uint8_t(*Fn__Array__Array__uint8_t_Array__uint8_t_Array__Array__uint8_t)(Array__Array__uint8_t, Array__uint8_t);
@@ -1031,6 +1095,12 @@ typedef bool(*Fn__FILE_MUL__FILE_MUL__bool)(FILE*, FILE*);
 typedef FILE*(*Fn__FILE_MUL__MUL__FILE_MUL_)(FILE**);
 
 // Depth 104
+typedef Result__Char_String(*Fn__FILE_MUL__Result__Char_String)(FILE*);
+
+// Depth 104
+typedef Result__uint8_t_String(*Fn__FILE_MUL__Result__uint8_t_String)(FILE*);
+
+// Depth 104
 typedef String(*Fn__FILE_MUL__String)(FILE*);
 
 // Depth 104
@@ -1122,6 +1192,27 @@ typedef Uint8(*Fn__Long_Uint8)(Long);
 
 // Depth 104
 typedef String(*Fn__Opaque_MUL__String)(Opaque*);
+
+// Depth 104
+typedef String(*Fn__PatternMatchResult_MUL__String)(PatternMatchResult*);
+
+// Depth 104
+typedef Maybe__String(*Fn__PatternMatchResult_MUL__String_MUL__Maybe__String)(PatternMatchResult*, String*);
+
+// Depth 104
+typedef bool(*Fn__PatternMatchResult_MUL__bool)(PatternMatchResult*);
+
+// Depth 104
+typedef int(*Fn__PatternMatchResult_MUL__int)(PatternMatchResult*);
+
+// Depth 104
+typedef int*(*Fn__PatternMatchResult_MUL__int_MUL_)(PatternMatchResult*);
+
+// Depth 104
+typedef PatternMatchResult(*Fn__Pattern_MUL__String_MUL__PatternMatchResult)(Pattern*, String*);
+
+// Depth 104
+typedef PatternMatchResult(*Fn__Pattern_MUL__String_MUL__int_PatternMatchResult)(Pattern*, String*, int);
 
 // Depth 104
 typedef FILE*(*Fn__String_MUL__String_MUL__FILE_MUL_)(String*, String*);
@@ -1218,6 +1309,12 @@ typedef Uint32(*Fn___Uint32)();
 
 // Depth 104
 typedef Uint64(*Fn___Uint64)();
+
+// Depth 104
+typedef int(*Fn__int_FILE_MUL__int)(int, FILE*);
+
+// Depth 104
+typedef Result__int_String(*Fn__uint8_t_FILE_MUL__Result__int_String)(uint8_t, FILE*);
 
 // Depth 104
 typedef Uint16(*Fn__uint8_t_uint8_t_Uint16)(uint8_t, uint8_t);
@@ -1323,6 +1420,9 @@ typedef Maybe__Uint64(*Fn__ByteOrder_Array__uint8_t_MUL__Maybe__Uint64)(ByteOrde
 typedef Result__FILE_MUL__String(*Fn__FILE_MUL__Result__FILE_MUL__String)(FILE*);
 
 // Depth 106
+typedef Result__int_String(*Fn__File_MUL__Array__uint8_t_MUL__Result__int_String)(File*, Array__uint8_t*);
+
+// Depth 106
 typedef FILE**(*Fn__File_MUL__FILE_MUL__MUL_)(File*);
 
 // Depth 106
@@ -1336,6 +1436,9 @@ typedef Result__int_String(*Fn__File_MUL__String_MUL__Result__int_String)(File*,
 
 // Depth 106
 typedef bool(*Fn__File_MUL__bool)(File*);
+
+// Depth 106
+typedef Result__Array__uint8_t_String(*Fn__File_MUL__int_Result__Array__uint8_t_String)(File*, int);
 
 // Depth 106
 typedef Result__String_String(*Fn__File_MUL__int_Result__String_String)(File*, int);
@@ -1461,6 +1564,15 @@ struct Pair__Array__Uint64_int {
 };
 
 // Depth 107
+typedef int(*Fn__Array__PatternMatchResult_MUL__int)(Array__PatternMatchResult*);
+
+// Depth 107
+typedef PatternMatchResult*(*Fn__Array__PatternMatchResult_MUL__int_PatternMatchResult_MUL_)(Array__PatternMatchResult*, int);
+
+// Depth 107
+typedef Array__PatternMatchResult(*Fn__Array__PatternMatchResult_PatternMatchResult_Array__PatternMatchResult)(Array__PatternMatchResult, PatternMatchResult);
+
+// Depth 107
 typedef Array__Uint16(*Fn__Array__Uint16_MUL__Array__Uint16)(Array__Uint16*);
 
 // Depth 107
@@ -1515,6 +1627,12 @@ typedef Lambda(*Fn__Fn__ByteOrder_Array__uint8_t_MUL__Maybe__Uint32_MUL__ByteOrd
 typedef Lambda(*Fn__Fn__ByteOrder_Array__uint8_t_MUL__Maybe__Uint64_MUL__ByteOrder_Fn__Array__uint8_t_MUL__Result__Uint64_Array__uint8_t)(Lambda*, ByteOrder);
 
 // Depth 107
+typedef Array__String(*Fn__Fn__PatternMatchResult_MUL__String_MUL__Array__PatternMatchResult_MUL__Array__String)(Lambda*, Array__PatternMatchResult*);
+
+// Depth 107
+typedef Array__int(*Fn__Fn__PatternMatchResult_MUL__int_MUL__Array__PatternMatchResult_MUL__Array__int)(Lambda*, Array__PatternMatchResult*);
+
+// Depth 107
 typedef Array__Array__uint8_t(*Fn__Fn__Uint16_MUL__Array__uint8_t_MUL__Array__Uint16_MUL__Array__Array__uint8_t)(Lambda*, Array__Uint16*);
 
 // Depth 107
@@ -1531,6 +1649,9 @@ typedef Array__Array__uint8_t(*Fn__Fn__Uint64_MUL__Array__uint8_t_MUL__Array__Ui
 
 // Depth 107
 typedef Array__uint8_t(*Fn__Fn__Uint64_MUL__uint8_t_MUL__Array__Uint64_MUL__Array__uint8_t)(Lambda*, Array__Uint64*);
+
+// Depth 107
+typedef Array__PatternMatchResult(*Fn__Pattern_MUL__String_MUL__Array__PatternMatchResult)(Pattern*, String*);
 
 // Depth 107
 typedef Array__Uint16(*Fn__int_Array__Uint16)(int);
@@ -1813,49 +1934,10 @@ typedef int(*Fn__LambdaEnv_int_int)(LambdaEnv, int);
 typedef uint8_t(*Fn__LambdaEnv_uint8_t_uint8_t)(LambdaEnv, uint8_t);
 
 // Depth 505
-typedef String(*Fn__PatternMatchResult_MUL__String)(PatternMatchResult*);
-
-// Depth 505
-typedef Maybe__String(*Fn__PatternMatchResult_MUL__String_MUL__Maybe__String)(PatternMatchResult*, String*);
-
-// Depth 505
-typedef bool(*Fn__PatternMatchResult_MUL__bool)(PatternMatchResult*);
-
-// Depth 505
-typedef int(*Fn__PatternMatchResult_MUL__int)(PatternMatchResult*);
-
-// Depth 505
-typedef int*(*Fn__PatternMatchResult_MUL__int_MUL_)(PatternMatchResult*);
-
-// Depth 505
-typedef PatternMatchResult(*Fn__Pattern_MUL__String_MUL__PatternMatchResult)(Pattern*, String*);
-
-// Depth 505
-typedef PatternMatchResult(*Fn__Pattern_MUL__String_MUL__int_PatternMatchResult)(Pattern*, String*, int);
-
-// Depth 505
 typedef CChar*(*Fn__String_MUL__CChar_MUL_)(String*);
 
 // Depth 505
 typedef CChar*(*Fn__int_CChar_MUL_)(int);
-
-// Depth 508
-typedef int(*Fn__Array__PatternMatchResult_MUL__int)(Array__PatternMatchResult*);
-
-// Depth 508
-typedef PatternMatchResult*(*Fn__Array__PatternMatchResult_MUL__int_PatternMatchResult_MUL_)(Array__PatternMatchResult*, int);
-
-// Depth 508
-typedef Array__PatternMatchResult(*Fn__Array__PatternMatchResult_PatternMatchResult_Array__PatternMatchResult)(Array__PatternMatchResult, PatternMatchResult);
-
-// Depth 508
-typedef Array__String(*Fn__Fn__PatternMatchResult_MUL__String_MUL__Array__PatternMatchResult_MUL__Array__String)(Lambda*, Array__PatternMatchResult*);
-
-// Depth 508
-typedef Array__int(*Fn__Fn__PatternMatchResult_MUL__int_MUL__Array__PatternMatchResult_MUL__Array__int)(Lambda*, Array__PatternMatchResult*);
-
-// Depth 508
-typedef Array__PatternMatchResult(*Fn__Pattern_MUL__String_MUL__Array__PatternMatchResult)(Pattern*, String*);
 
 
 //Declarations:
@@ -1876,91 +1958,94 @@ bool _LT__EQ___int(int a, int b);
 bool _GT__EQ___int(int a, int b);
 
 // Depth 500
-Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty* Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty_copy(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty* pRef);
+void* Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty_copy(void* pRef_raw);
 
 // Depth 500
-void Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty_delete(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty* p);
+void Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty_delete(void* p_raw);
 
 // Depth 500
-Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty* Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty_copy(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty* pRef);
+void* Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty_copy(void* pRef_raw);
 
 // Depth 500
-void Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty_delete(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty* p);
+void Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty_delete(void* p_raw);
 
 // Depth 500
-Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty* Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty_copy(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty* pRef);
+void* Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty_copy(void* pRef_raw);
 
 // Depth 500
-void Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty_delete(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty* p);
+void Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty_delete(void* p_raw);
 
 // Depth 500
-Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty* Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty_copy(Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty* pRef);
+void* Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty_copy(void* pRef_raw);
 
 // Depth 500
-void Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty_delete(Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty* p);
+void Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty_delete(void* p_raw);
 
 // Depth 500
-Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty* Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty_copy(Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty* pRef);
+void* Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty_copy(void* pRef_raw);
 
 // Depth 500
-void Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty_delete(Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty* p);
+void Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty_delete(void* p_raw);
 
 // Depth 500
-Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty* Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty_copy(Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty* pRef);
+void* Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty_copy(void* pRef_raw);
 
 // Depth 500
-void Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty_delete(Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty* p);
+void Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty_delete(void* p_raw);
 
 // Depth 500
-Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty* Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty_copy(Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty* pRef);
+void* Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty_copy(void* pRef_raw);
 
 // Depth 500
-void Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty_delete(Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty* p);
+void Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty_delete(void* p_raw);
 
 // Depth 500
-Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty* Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty_copy(Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty* pRef);
+void* Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty_copy(void* pRef_raw);
 
 // Depth 500
-void Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty_delete(Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty* p);
+void Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty_delete(void* p_raw);
 
 // Depth 500
-Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty* Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty_copy(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty* pRef);
+void* Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty_copy(void* pRef_raw);
 
 // Depth 500
-void Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty_delete(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty* p);
+void Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty_delete(void* p_raw);
 
 // Depth 500
-Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty* Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty_copy(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty* pRef);
+void* Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty_copy(void* pRef_raw);
 
 // Depth 500
-void Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty_delete(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty* p);
+void Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty_delete(void* p_raw);
 
 // Depth 500
-Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty* Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty_copy(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty* pRef);
+void* Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty_copy(void* pRef_raw);
 
 // Depth 500
-void Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty_delete(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty* p);
+void Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty_delete(void* p_raw);
 
 // Depth 500
-File__Lambda_map_MINUS_with__String_29_env_ty* File__Lambda_map_MINUS_with__String_29_env_ty_copy(File__Lambda_map_MINUS_with__String_29_env_ty* pRef);
+void* File__Lambda_map_MINUS_with__String_29_env_ty_copy(void* pRef_raw);
 
 // Depth 500
-void File__Lambda_map_MINUS_with__String_29_env_ty_delete(File__Lambda_map_MINUS_with__String_29_env_ty* p);
+void File__Lambda_map_MINUS_with__String_29_env_ty_delete(void* p_raw);
 
 // Depth 500
-File__Lambda_map_MINUS_with__String_40_env_ty* File__Lambda_map_MINUS_with__String_40_env_ty_copy(File__Lambda_map_MINUS_with__String_40_env_ty* pRef);
+void* File__Lambda_map_MINUS_with__String_40_env_ty_copy(void* pRef_raw);
 
 // Depth 500
-void File__Lambda_map_MINUS_with__String_40_env_ty_delete(File__Lambda_map_MINUS_with__String_40_env_ty* p);
+void File__Lambda_map_MINUS_with__String_40_env_ty_delete(void* p_raw);
 
 // Depth 500
-Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty* Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty_copy(Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty* pRef);
+void* Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty_copy(void* pRef_raw);
 
 // Depth 500
-void Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty_delete(Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty* p);
+void Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty_delete(void* p_raw);
 
 // Depth 500
 int id__int(int x);
+
+// Depth 500
+int main(int argc, char** argv);
 
 // Depth 500
 int max__int(int a, int b);
@@ -2250,6 +2335,9 @@ Array__Array__uint8_t Array_partition__uint8_t(Array__uint8_t* arr, int n);
 Array__Char Array_prefix__Array__Char(Array__Char* xs, int end_MINUS_index);
 
 // Depth 500
+Array__uint8_t Array_prefix__Array__uint8_t(Array__uint8_t* xs, int end_MINUS_index);
+
+// Depth 500
 void Array_push_MINUS_back_BANG___String(Array *aRef, String value);
 
 // Depth 500
@@ -2330,31 +2418,31 @@ Array__uint8_t Array_zero__uint8_t();
 // Depth 1000
 
 // Depth 500
-Result__Uint16_Array__uint8_t Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty* _env, Array__uint8_t* bs);
+Result__Uint16_Array__uint8_t Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env(void *_env_raw, Array__uint8_t* bs);
 
 // Depth 500
-Result__Uint32_Array__uint8_t Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty* _env, Array__uint8_t* bs);
+Result__Uint32_Array__uint8_t Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env(void *_env_raw, Array__uint8_t* bs);
 
 // Depth 500
-Result__Uint64_Array__uint8_t Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty* _env, Array__uint8_t* bs);
+Result__Uint64_Array__uint8_t Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env(void *_env_raw, Array__uint8_t* bs);
 
 // Depth 500
 String Binary__Lambda_bytes_MINUS__GT_hex_MINUS_string_14_env(uint8_t* b);
 
 // Depth 500
-Array__uint8_t Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env(Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty* _env, Uint16* i);
+Array__uint8_t Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env(void *_env_raw, Uint16* i);
 
 // Depth 500
-Uint32 Binary__Lambda_int32_MINUS__GT_bytes_16_env(Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty* _env, Long lng);
+Uint32 Binary__Lambda_int32_MINUS__GT_bytes_16_env(void *_env_raw, Long lng);
 
 // Depth 500
-Array__uint8_t Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env(Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty* _env, Uint32* i);
+Array__uint8_t Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env(void *_env_raw, Uint32* i);
 
 // Depth 500
-Uint64 Binary__Lambda_int64_MINUS__GT_bytes_16_env(Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty* _env, Long lng);
+Uint64 Binary__Lambda_int64_MINUS__GT_bytes_16_env(void *_env_raw, Long lng);
 
 // Depth 500
-Array__uint8_t Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env(Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty* _env, Uint64* i);
+Array__uint8_t Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env(void *_env_raw, Uint64* i);
 
 // Depth 500
 int Binary__Lambda_remaining_MINUS_bytes_16_env(int x, int* y);
@@ -2369,13 +2457,13 @@ int Binary__Lambda_remaining_MINUS_bytes__Uint32_uint8_t_16_env(int x, int* y);
 int Binary__Lambda_remaining_MINUS_bytes__Uint64_uint8_t_16_env(int x, int* y);
 
 // Depth 500
-Uint16 Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty* _env, Array__uint8_t* b);
+Uint16 Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env(void *_env_raw, Array__uint8_t* b);
 
 // Depth 500
-Uint32 Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty* _env, Array__uint8_t* b);
+Uint32 Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env(void *_env_raw, Array__uint8_t* b);
 
 // Depth 500
-Uint64 Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty* _env, Array__uint8_t* b);
+Uint64 Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env(void *_env_raw, Array__uint8_t* b);
 
 // Depth 500
 Lambda Binary_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16(Lambda* f, ByteOrder order);
@@ -2716,10 +2804,10 @@ String DoubleRef_str(double* x);
 // Depth 1000
 
 // Depth 500
-void File__Lambda_map_MINUS_with__String_29_env(File__Lambda_map_MINUS_with__String_29_env_ty* _env, String* e);
+void File__Lambda_map_MINUS_with__String_29_env(void *_env_raw, String* e);
 
 // Depth 500
-Array__String File__Lambda_map_MINUS_with__String_40_env(File__Lambda_map_MINUS_with__String_40_env_ty* _env, int _);
+Array__String File__Lambda_map_MINUS_with__String_40_env(void *_env_raw, int _);
 
 // Depth 500
 bool File_binary_MINUS_mode_QMARK_(File* f);
@@ -2770,10 +2858,10 @@ Result__File_String File_open_MINUS_with(String* name, String* mode);
 String File_prn(File *p);
 
 // Depth 500
-Result__String_String File_read(File* f, int len);
+Result__Array__uint8_t_String File_read__Array__uint8_t(File* f, int len);
 
 // Depth 500
-Result__String_String File_read_MINUS_all(File* f);
+Result__String_String File_read__String(File* f, int len);
 
 // Depth 500
 bool File_readable_QMARK_(File* f);
@@ -2830,7 +2918,51 @@ Result__int_String File_walk_MINUS_with(String* s, Lambda* callback, WalkOptions
 bool File_writable_QMARK_(File* f);
 
 // Depth 500
-Result__int_String File_write(File* f, String* string);
+Result__int_String File_write__Array__uint8_t_MUL_(File* f, Array__uint8_t* obj);
+
+// Depth 500
+Result__int_String File_write__String_MUL_(File* f, String* obj);
+
+// Depth 1000
+
+// Depth 500
+Result__Array__uint8_t_String File_ByteReader_read(File* file, int n);
+
+// Depth 500
+Result__Array__uint8_t_String File_ByteReader_read_MINUS_at_MINUS_most(File* f, int n);
+
+// Depth 500
+Result__uint8_t_String File_ByteReader_read_MINUS_byte(FILE* file);
+
+// Depth 500
+Result__Array__uint8_t_String File_ByteReader_read_MINUS_bytes(File* f, int n);
+
+// Depth 1000
+
+// Depth 500
+Result__int_String File_ByteWriter_write(File* file, Array__uint8_t* bytes);
+
+// Depth 500
+Result__int_String File_ByteWriter_write_MINUS_byte(uint8_t byte, FILE* file);
+
+// Depth 500
+Result__int_String File_ByteWriter_write_MINUS_bytes(File* f, Array__uint8_t* bytes);
+
+// Depth 1000
+
+// Depth 500
+Result__String_String File_StringReader_read(File* file, int n);
+
+// Depth 500
+Result__String_String File_StringReader_read_MINUS_string(File* f, int len);
+
+// Depth 1000
+
+// Depth 500
+Result__int_String File_StringWriter_write(File* f, String* string);
+
+// Depth 500
+Result__int_String File_StringWriter_write_MINUS_string(File* f, String* string);
 
 // Depth 1000
 
@@ -3232,6 +3364,9 @@ int Log_WARN;
 void Log__Lambda_NAKED_LAMBDA_14_env(LogRecord* r);
 
 // Depth 500
+bool Log_enabled_QMARK_(int lvl);
+
+// Depth 500
 Lambda Log_log_MINUS_;
 
 // Depth 500
@@ -3536,7 +3671,7 @@ Pair__Array__Uint64_int Pair_init__Array__Uint64_int(Array__Uint64 a, int b);
 int Pattern__Lambda_find_MINUS_all_15_env(PatternMatchResult* m);
 
 // Depth 500
-String Pattern__Lambda_global_MINUS_match_MINUS_str_16_env(Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty* _env, PatternMatchResult* m);
+String Pattern__Lambda_global_MINUS_match_MINUS_str_16_env(void *_env_raw, PatternMatchResult* m);
 
 // Depth 500
 Maybe__String Pattern_extract(PatternMatchResult* match_MINUS_res, String* data);
@@ -3678,6 +3813,9 @@ Result__Uint64_Array__uint8_t Result_Error__Array__uint8_t_Uint64(Array__uint8_t
 Result__Array__String_String Result_Error__String_Array__String(String member0);
 
 // Depth 500
+Result__Array__uint8_t_String Result_Error__String_Array__uint8_t(String member0);
+
+// Depth 500
 Result__Char_String Result_Error__String_Char(String member0);
 
 // Depth 500
@@ -3694,6 +3832,9 @@ Result__bool_String Result_Error__String_bool(String member0);
 
 // Depth 500
 Result__int_String Result_Error__String_int(String member0);
+
+// Depth 500
+Result__uint8_t_String Result_Error__String_uint8_t(String member0);
 
 // Depth 500
 Result__Array__Uint16_int Result_Error__int_Array__Uint16(int member0);
@@ -3715,6 +3856,9 @@ Result__Array__Uint32_int Result_Success__Array__Uint32_int(Array__Uint32 member
 
 // Depth 500
 Result__Array__Uint64_int Result_Success__Array__Uint64_int(Array__Uint64 member0);
+
+// Depth 500
+Result__Array__uint8_t_String Result_Success__Array__uint8_t_String(Array__uint8_t member0);
 
 // Depth 500
 Result__Char_String Result_Success__Char_String(Char member0);
@@ -3744,6 +3888,9 @@ Result__bool_String Result_Success__bool_String(bool member0);
 Result__int_String Result_Success__int_String(int member0);
 
 // Depth 500
+Result__uint8_t_String Result_Success__uint8_t_String(uint8_t member0);
+
+// Depth 500
 Result__Uint16_Array__uint8_t Result_copy__Uint16_Array__uint8_t(Result__Uint16_Array__uint8_t* pRef);
 
 // Depth 500
@@ -3763,6 +3910,9 @@ void Result_delete__Array__Uint32_int(Result__Array__Uint32_int p);
 
 // Depth 500
 void Result_delete__Array__Uint64_int(Result__Array__Uint64_int p);
+
+// Depth 500
+void Result_delete__Array__uint8_t_String(Result__Array__uint8_t_String p);
 
 // Depth 500
 void Result_delete__Char_String(Result__Char_String p);
@@ -3792,6 +3942,9 @@ void Result_delete__bool_String(Result__bool_String p);
 void Result_delete__int_String(Result__int_String p);
 
 // Depth 500
+void Result_delete__uint8_t_String(Result__uint8_t_String p);
+
+// Depth 500
 bool Result_error_QMARK___FILE_MUL__String(Result__FILE_MUL__String* a);
 
 // Depth 500
@@ -3804,6 +3957,9 @@ bool Result_error_QMARK___Uint32_Array__uint8_t(Result__Uint32_Array__uint8_t* a
 bool Result_error_QMARK___Uint64_Array__uint8_t(Result__Uint64_Array__uint8_t* a);
 
 // Depth 500
+bool Result_error_QMARK___int_String(Result__int_String* a);
+
+// Depth 500
 Array__uint8_t Result_from_MINUS_error__Uint16_Array__uint8_t(Result__Uint16_Array__uint8_t a, Array__uint8_t dflt);
 
 // Depth 500
@@ -3811,6 +3967,9 @@ Array__uint8_t Result_from_MINUS_error__Uint32_Array__uint8_t(Result__Uint32_Arr
 
 // Depth 500
 Array__uint8_t Result_from_MINUS_error__Uint64_Array__uint8_t(Result__Uint64_Array__uint8_t a, Array__uint8_t dflt);
+
+// Depth 500
+Result__uint8_t_String Result_map__Char_String_uint8_t(Result__Char_String a, Lambda* f);
 
 // Depth 500
 Result__Array__String_String Result_map__int_String_Array__String(Result__int_String a, Lambda* f);
@@ -5559,6 +5718,11 @@ Array__Char Array_prefix__Array__Char(Array__Char* xs, int end_MINUS_index) {
     return _9;
 }
 
+Array__uint8_t Array_prefix__Array__uint8_t(Array__uint8_t* xs, int end_MINUS_index) {
+    Array__uint8_t _9 = Array_slice__uint8_t(xs, 0, end_MINUS_index);
+    return _9;
+}
+
 void Array_push_MINUS_back_BANG___String(Array *aRef, String value) { 
     aRef->len++;
     if(aRef->len > aRef->capacity) {
@@ -5878,7 +6042,8 @@ Array__uint8_t Array_zero__uint8_t() {
     return _3;
 }
 
-Result__Uint16_Array__uint8_t Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty* _env, Array__uint8_t* bs) {
+Result__Uint16_Array__uint8_t Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env(void *_env_raw, Array__uint8_t* bs) {
+    Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty* _env = _env_raw;
     Maybe__Uint16 _14 = (*_env->f).env ? ((Maybe__Uint16(*)(LambdaEnv, ByteOrder, Array__uint8_t*))(*_env->f).callback)((*_env->f).env, _env->order, bs) : ((Maybe__Uint16(*)(ByteOrder, Array__uint8_t*))(*_env->f).callback)(_env->order, bs);
     Result__Uint16_Array__uint8_t _28;
     if(_14._tag == Maybe__Uint16_Nothing_tag) {
@@ -5899,7 +6064,8 @@ Result__Uint16_Array__uint8_t Binary__Lambda_byte_MINUS_converter__ByteOrder_Arr
     return _28;
 }
 
-Result__Uint32_Array__uint8_t Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty* _env, Array__uint8_t* bs) {
+Result__Uint32_Array__uint8_t Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env(void *_env_raw, Array__uint8_t* bs) {
+    Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty* _env = _env_raw;
     Maybe__Uint32 _14 = (*_env->f).env ? ((Maybe__Uint32(*)(LambdaEnv, ByteOrder, Array__uint8_t*))(*_env->f).callback)((*_env->f).env, _env->order, bs) : ((Maybe__Uint32(*)(ByteOrder, Array__uint8_t*))(*_env->f).callback)(_env->order, bs);
     Result__Uint32_Array__uint8_t _28;
     if(_14._tag == Maybe__Uint32_Nothing_tag) {
@@ -5920,7 +6086,8 @@ Result__Uint32_Array__uint8_t Binary__Lambda_byte_MINUS_converter__ByteOrder_Arr
     return _28;
 }
 
-Result__Uint64_Array__uint8_t Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty* _env, Array__uint8_t* bs) {
+Result__Uint64_Array__uint8_t Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env(void *_env_raw, Array__uint8_t* bs) {
+    Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty* _env = _env_raw;
     Maybe__Uint64 _14 = (*_env->f).env ? ((Maybe__Uint64(*)(LambdaEnv, ByteOrder, Array__uint8_t*))(*_env->f).callback)((*_env->f).env, _env->order, bs) : ((Maybe__Uint64(*)(ByteOrder, Array__uint8_t*))(*_env->f).callback)(_env->order, bs);
     Result__Uint64_Array__uint8_t _28;
     if(_14._tag == Maybe__Uint64_Nothing_tag) {
@@ -5947,31 +6114,36 @@ String Binary__Lambda_bytes_MINUS__GT_hex_MINUS_string_14_env(uint8_t* b) {
     return _13;
 }
 
-Array__uint8_t Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env(Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty* _env, Uint16* i) {
+Array__uint8_t Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env(void *_env_raw, Uint16* i) {
+    Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty* _env = _env_raw;
     Uint16 _14 = Uint16_copy(i);
     Array__uint8_t _15 = Binary_int16_MINUS__GT_bytes(_env->order, _14);
     return _15;
 }
 
-Uint32 Binary__Lambda_int32_MINUS__GT_bytes_16_env(Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty* _env, Long lng) {
+Uint32 Binary__Lambda_int32_MINUS__GT_bytes_16_env(void *_env_raw, Long lng) {
+    Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty* _env = _env_raw;
     Uint32 _14 = Uint32_from_MINUS_long(lng);
     Uint32 _15 = Uint32_bit_MINUS_shift_MINUS_right(_env->i, _14);
     return _15;
 }
 
-Array__uint8_t Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env(Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty* _env, Uint32* i) {
+Array__uint8_t Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env(void *_env_raw, Uint32* i) {
+    Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty* _env = _env_raw;
     Uint32 _14 = Uint32_copy(i);
     Array__uint8_t _15 = Binary_int32_MINUS__GT_bytes(_env->order, _14);
     return _15;
 }
 
-Uint64 Binary__Lambda_int64_MINUS__GT_bytes_16_env(Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty* _env, Long lng) {
+Uint64 Binary__Lambda_int64_MINUS__GT_bytes_16_env(void *_env_raw, Long lng) {
+    Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty* _env = _env_raw;
     Uint64 _14 = Uint64_from_MINUS_long(lng);
     Uint64 _15 = Uint64_bit_MINUS_shift_MINUS_right(_env->i, _14);
     return _15;
 }
 
-Array__uint8_t Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env(Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty* _env, Uint64* i) {
+Array__uint8_t Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env(void *_env_raw, Uint64* i) {
+    Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty* _env = _env_raw;
     Uint64 _14 = Uint64_copy(i);
     Array__uint8_t _15 = Binary_int64_MINUS__GT_bytes(_env->order, _14);
     return _15;
@@ -6001,17 +6173,20 @@ int Binary__Lambda_remaining_MINUS_bytes__Uint64_uint8_t_16_env(int x, int* y) {
     return _15;
 }
 
-Uint16 Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty* _env, Array__uint8_t* b) {
+Uint16 Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env(void *_env_raw, Array__uint8_t* b) {
+    Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty* _env = _env_raw;
     Uint16 _18 = Binary_unsafe_MINUS_bytes_MINUS__GT_int16(_env->order, b);
     return _18;
 }
 
-Uint32 Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty* _env, Array__uint8_t* b) {
+Uint32 Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env(void *_env_raw, Array__uint8_t* b) {
+    Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty* _env = _env_raw;
     Uint32 _18 = Binary_unsafe_MINUS_bytes_MINUS__GT_int32(_env->order, b);
     return _18;
 }
 
-Uint64 Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty* _env, Array__uint8_t* b) {
+Uint64 Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env(void *_env_raw, Array__uint8_t* b) {
+    Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty* _env = _env_raw;
     Uint64 _18 = Binary_unsafe_MINUS_bytes_MINUS__GT_int64(_env->order, b);
     return _18;
 }
@@ -7803,130 +7978,152 @@ Uint64 Binary_unwrap_MINUS_success__Uint64_Array__uint8_t(Result__Uint64_Array__
     return _8;
 }
 
-Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty* Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty_copy(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty* pRef) {
+void* Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty_copy(void* pRef_raw) {
+    Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty* pRef = pRef_raw;
     Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty* copy = CARP_MALLOC(sizeof(*pRef));
     *copy = *pRef;
-    /* Ignore non-managed member 'f' : (Ref (Fn [ByteOrder, (Ref (Array Byte) <c>)] (Maybe Uint16) <StaticLifetime>) <StaticLifetime>) */
+    /* Ignore non-managed member 'f' : (Ref (Fn [ByteOrder, (Ref (Array Byte) c)] (Maybe Uint16)) StaticLifetime) */
     /* Ignore non-managed member 'order' : ByteOrder */
     return copy;
 }
 
-void Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty_delete(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty* p) {
-    /* Ignore non-managed member 'f' : (Ref (Fn [ByteOrder, (Ref (Array Byte) <c>)] (Maybe Uint16) <StaticLifetime>) <StaticLifetime>) */
+void Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty_delete(void* p_raw) {
+    Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint16_29_env_ty* p = p_raw;
+    /* Ignore non-managed member 'f' : (Ref (Fn [ByteOrder, (Ref (Array Byte) c)] (Maybe Uint16)) StaticLifetime) */
     /* Ignore non-managed member 'order' : ByteOrder */
 }
 
-Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty* Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty_copy(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty* pRef) {
+void* Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty_copy(void* pRef_raw) {
+    Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty* pRef = pRef_raw;
     Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty* copy = CARP_MALLOC(sizeof(*pRef));
     *copy = *pRef;
-    /* Ignore non-managed member 'f' : (Ref (Fn [ByteOrder, (Ref (Array Byte) <c>)] (Maybe Uint32) <StaticLifetime>) <StaticLifetime>) */
+    /* Ignore non-managed member 'f' : (Ref (Fn [ByteOrder, (Ref (Array Byte) c)] (Maybe Uint32)) StaticLifetime) */
     /* Ignore non-managed member 'order' : ByteOrder */
     return copy;
 }
 
-void Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty_delete(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty* p) {
-    /* Ignore non-managed member 'f' : (Ref (Fn [ByteOrder, (Ref (Array Byte) <c>)] (Maybe Uint32) <StaticLifetime>) <StaticLifetime>) */
+void Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty_delete(void* p_raw) {
+    Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint32_29_env_ty* p = p_raw;
+    /* Ignore non-managed member 'f' : (Ref (Fn [ByteOrder, (Ref (Array Byte) c)] (Maybe Uint32)) StaticLifetime) */
     /* Ignore non-managed member 'order' : ByteOrder */
 }
 
-Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty* Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty_copy(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty* pRef) {
+void* Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty_copy(void* pRef_raw) {
+    Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty* pRef = pRef_raw;
     Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty* copy = CARP_MALLOC(sizeof(*pRef));
     *copy = *pRef;
-    /* Ignore non-managed member 'f' : (Ref (Fn [ByteOrder, (Ref (Array Byte) <c>)] (Maybe Uint64) <StaticLifetime>) <StaticLifetime>) */
+    /* Ignore non-managed member 'f' : (Ref (Fn [ByteOrder, (Ref (Array Byte) c)] (Maybe Uint64)) StaticLifetime) */
     /* Ignore non-managed member 'order' : ByteOrder */
     return copy;
 }
 
-void Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty_delete(Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty* p) {
-    /* Ignore non-managed member 'f' : (Ref (Fn [ByteOrder, (Ref (Array Byte) <c>)] (Maybe Uint64) <StaticLifetime>) <StaticLifetime>) */
+void Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty_delete(void* p_raw) {
+    Binary__Lambda_byte_MINUS_converter__ByteOrder_Array__uint8_t_Uint64_29_env_ty* p = p_raw;
+    /* Ignore non-managed member 'f' : (Ref (Fn [ByteOrder, (Ref (Array Byte) c)] (Maybe Uint64)) StaticLifetime) */
     /* Ignore non-managed member 'order' : ByteOrder */
 }
 
-Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty* Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty_copy(Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty* pRef) {
+void* Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty_copy(void* pRef_raw) {
+    Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty* pRef = pRef_raw;
     Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty* copy = CARP_MALLOC(sizeof(*pRef));
     *copy = *pRef;
     /* Ignore non-managed member 'order' : ByteOrder */
     return copy;
 }
 
-void Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty_delete(Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty* p) {
+void Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty_delete(void* p_raw) {
+    Binary__Lambda_int16_MINUS_seq_MINUS__GT_bytes_16_env_ty* p = p_raw;
     /* Ignore non-managed member 'order' : ByteOrder */
 }
 
-Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty* Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty_copy(Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty* pRef) {
+void* Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty_copy(void* pRef_raw) {
+    Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty* pRef = pRef_raw;
     Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty* copy = CARP_MALLOC(sizeof(*pRef));
     *copy = *pRef;
     /* Ignore non-managed member 'i' : Uint32 */
     return copy;
 }
 
-void Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty_delete(Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty* p) {
+void Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty_delete(void* p_raw) {
+    Binary__Lambda_int32_MINUS__GT_bytes_16_env_ty* p = p_raw;
     /* Ignore non-managed member 'i' : Uint32 */
 }
 
-Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty* Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty_copy(Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty* pRef) {
+void* Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty_copy(void* pRef_raw) {
+    Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty* pRef = pRef_raw;
     Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty* copy = CARP_MALLOC(sizeof(*pRef));
     *copy = *pRef;
     /* Ignore non-managed member 'order' : ByteOrder */
     return copy;
 }
 
-void Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty_delete(Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty* p) {
+void Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty_delete(void* p_raw) {
+    Binary__Lambda_int32_MINUS_seq_MINUS__GT_bytes_16_env_ty* p = p_raw;
     /* Ignore non-managed member 'order' : ByteOrder */
 }
 
-Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty* Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty_copy(Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty* pRef) {
+void* Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty_copy(void* pRef_raw) {
+    Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty* pRef = pRef_raw;
     Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty* copy = CARP_MALLOC(sizeof(*pRef));
     *copy = *pRef;
     /* Ignore non-managed member 'i' : Uint64 */
     return copy;
 }
 
-void Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty_delete(Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty* p) {
+void Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty_delete(void* p_raw) {
+    Binary__Lambda_int64_MINUS__GT_bytes_16_env_ty* p = p_raw;
     /* Ignore non-managed member 'i' : Uint64 */
 }
 
-Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty* Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty_copy(Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty* pRef) {
+void* Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty_copy(void* pRef_raw) {
+    Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty* pRef = pRef_raw;
     Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty* copy = CARP_MALLOC(sizeof(*pRef));
     *copy = *pRef;
     /* Ignore non-managed member 'order' : ByteOrder */
     return copy;
 }
 
-void Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty_delete(Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty* p) {
+void Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty_delete(void* p_raw) {
+    Binary__Lambda_int64_MINUS_seq_MINUS__GT_bytes_16_env_ty* p = p_raw;
     /* Ignore non-managed member 'order' : ByteOrder */
 }
 
-Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty* Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty_copy(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty* pRef) {
+void* Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty_copy(void* pRef_raw) {
+    Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty* pRef = pRef_raw;
     Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty* copy = CARP_MALLOC(sizeof(*pRef));
     *copy = *pRef;
     /* Ignore non-managed member 'order' : ByteOrder */
     return copy;
 }
 
-void Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty_delete(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty* p) {
+void Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty_delete(void* p_raw) {
+    Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int16_MINUS_seq_19_env_ty* p = p_raw;
     /* Ignore non-managed member 'order' : ByteOrder */
 }
 
-Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty* Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty_copy(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty* pRef) {
+void* Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty_copy(void* pRef_raw) {
+    Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty* pRef = pRef_raw;
     Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty* copy = CARP_MALLOC(sizeof(*pRef));
     *copy = *pRef;
     /* Ignore non-managed member 'order' : ByteOrder */
     return copy;
 }
 
-void Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty_delete(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty* p) {
+void Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty_delete(void* p_raw) {
+    Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int32_MINUS_seq_19_env_ty* p = p_raw;
     /* Ignore non-managed member 'order' : ByteOrder */
 }
 
-Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty* Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty_copy(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty* pRef) {
+void* Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty_copy(void* pRef_raw) {
+    Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty* pRef = pRef_raw;
     Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty* copy = CARP_MALLOC(sizeof(*pRef));
     *copy = *pRef;
     /* Ignore non-managed member 'order' : ByteOrder */
     return copy;
 }
 
-void Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty_delete(Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty* p) {
+void Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty_delete(void* p_raw) {
+    Binary__Lambda_unsafe_MINUS_bytes_MINUS__GT_int64_MINUS_seq_19_env_ty* p = p_raw;
     /* Ignore non-managed member 'order' : ByteOrder */
 }
 
@@ -8606,12 +8803,383 @@ String DoubleRef_str(double* x) {
     return _8;
 }
 
-void File__Lambda_map_MINUS_with__String_29_env(File__Lambda_map_MINUS_with__String_29_env_ty* _env, String* e) {
+Result__Array__uint8_t_String File_ByteReader_read(File* file, int n) {
+    Result__Array__uint8_t_String _8 = File_read__Array__uint8_t(file, n);
+    return _8;
+}
+
+Result__Array__uint8_t_String File_ByteReader_read_MINUS_at_MINUS_most(File* f, int n) {
+    Result__Array__uint8_t_String _129;
+    bool _9 = File_readable_QMARK_(f);
+    bool _10 = not(_9);
+    if (_10) {
+        static String _16 = "The file “%s” is not readable";
+        String *_16_ref = &_16;
+        String* _19 = File_name(f);
+        String _1000006 = String_format(_16_ref, _19);
+        String* _1000004 = &_1000006; // ref
+        String _22 = String_copy(_1000004);
+        Result__Array__uint8_t_String _23 = Result_Error__String_Array__uint8_t(_22);
+        Result__Array__uint8_t_String _24 = _23;
+        String_delete(_1000006);
+        _129 = _24;
+    } else {
+        Result__Array__uint8_t_String _127;
+        bool _30 = Int__LT_(n, 0);
+        if (_30) {
+            static String _38 = "Can’t read %d bytes from the file “";
+            String *_38_ref = &_38;
+            String _1000015 = Int_format(_38_ref, n);
+            String* _1000013 = &_1000015; // ref
+            static String _44 = "%s”";
+            String *_44_ref = &_44;
+            String* _47 = File_name(f);
+            String _1000018 = String_format(_44_ref, _47);
+            String* _1000016 = &_1000018; // ref
+            String _1000012 = String_append(_1000013, _1000016);
+            String* _1000010 = &_1000012; // ref
+            String _52 = String_copy(_1000010);
+            Result__Array__uint8_t_String _53 = Result_Error__String_Array__uint8_t(_52);
+            Result__Array__uint8_t_String _54 = _53;
+            String_delete(_1000012);
+            String_delete(_1000015);
+            String_delete(_1000018);
+            _127 = _54;
+        } else {
+            Result__Array__uint8_t_String _125;
+            /* let */ {
+                Array__uint8_t _60 = Array_allocate__uint8_t(n);
+                Array__uint8_t bytes = _60;
+                int i = 0;
+                bool _69 = Int__LT_(i, n);
+                bool _102 = _69;
+                while (_102) {
+                    FILE** _76 = File_file(f);
+                    FILE* _77 = Pointer_copy__FILE(_76);
+                    Result__uint8_t_String _78 = File_ByteReader_read_MINUS_byte(_77);
+                    if(_78._tag == Result__uint8_t_String_Success_tag) {
+                        Result__uint8_t_String _78_temp = _78;
+                        uint8_t b = _78_temp.u.Success.member0;
+                        // Case expr:
+                        Array__uint8_t* _85 = &bytes; // ref
+                        Array_aset_MINUS_uninitialized_BANG___uint8_t(_85, i, b);
+                    }
+                    else if(_78._tag == Result__uint8_t_String_Error_tag) {
+                        Result__uint8_t_String _78_temp = _78;
+                        String wildcard_90 = _78_temp.u.Error.member0;
+                        // Case expr:
+                        break;
+                        // Unreachable:
+                        String_delete(wildcard_90);
+                    }
+                    else UNHANDLED("byte-reader.carp", 28);
+                    int _99 = Int_inc(i);
+                    i = _99;  // Int = Int
+                    bool _69 = Int__LT_(i, n);
+                    _102 = _69;
+                }
+                Result__Array__uint8_t_String _123;
+                bool _107 = Int__EQ_(i, n);
+                if (_107) {
+                    Result__Array__uint8_t_String _111 = Result_Success__Array__uint8_t_String(bytes);
+                    Result__Array__uint8_t_String _112 = _111;
+                    _123 = _112;
+                } else {
+                    Array__uint8_t* _118 = &bytes; // ref
+                    Array__uint8_t _120 = Array_prefix__Array__uint8_t(_118, i);
+                    Result__Array__uint8_t_String _121 = Result_Success__Array__uint8_t_String(_120);
+                    Result__Array__uint8_t_String _122 = _121;
+                    Array_delete__uint8_t(bytes);
+                    _123 = _122;
+                }
+                Result__Array__uint8_t_String _124 = _123;
+                _125 = _124;
+            }
+            Result__Array__uint8_t_String _126 = _125;
+            _127 = _126;
+        }
+        Result__Array__uint8_t_String _128 = _127;
+        _129 = _128;
+    }
+    return _129;
+}
+
+Result__uint8_t_String File_ByteReader_read_MINUS_byte(FILE* file) {
+    Result__Char_String _7 = IO_fgetc(file);
+    Lambda _9 = { .callback = (void*)Char_to_MINUS_byte, .env = NULL, .delete = NULL, .copy = NULL }; //Sym Char.to-byte (LookupGlobal ExternalCode AFunction)
+    Lambda* _10 = &_9; // ref
+    Result__uint8_t_String _11 = Result_map__Char_String_uint8_t(_7, _10);
+    return _11;
+}
+
+Result__Array__uint8_t_String File_ByteReader_read_MINUS_bytes(File* f, int n) {
+    Result__Array__uint8_t_String _9 = File_ByteReader_read_MINUS_at_MINUS_most(f, n);
+    Result__Array__uint8_t_String _73;
+    if(_9._tag == Result__Array__uint8_t_String_Error_tag) {
+        Result__Array__uint8_t_String _9_temp = _9;
+        String e = _9_temp.u.Error.member0;
+        // Case expr:
+        Result__Array__uint8_t_String _15 = Result_Error__String_Array__uint8_t(e);
+        _73 = _15;
+    }
+    else if(_9._tag == Result__Array__uint8_t_String_Success_tag) {
+        Result__Array__uint8_t_String _9_temp = _9;
+        Array__uint8_t bytes = _9_temp.u.Success.member0;
+        // Case expr:
+        Result__Array__uint8_t_String _72;
+        /* let */ {
+            Array__uint8_t* _24 = &bytes; // ref
+            int _25 = Array_length__uint8_t(_24);
+            int got = _25;
+            Result__Array__uint8_t_String _71;
+            bool _31 = Int__EQ_(got, n);
+            if (_31) {
+                Result__Array__uint8_t_String _35 = Result_Success__Array__uint8_t_String(bytes);
+                Result__Array__uint8_t_String _36 = _35;
+                _71 = _36;
+            } else {
+                static String _44 = "Expected %d bytes from the file “";
+                String *_44_ref = &_44;
+                String _1000012 = Int_format(_44_ref, n);
+                String* _1000010 = &_1000012; // ref
+                static String _52 = "%s”, but got ";
+                String *_52_ref = &_52;
+                String* _55 = File_name(f);
+                String _1000018 = String_format(_52_ref, _55);
+                String* _1000016 = &_1000018; // ref
+                static String _60 = "%d";
+                String *_60_ref = &_60;
+                String _1000021 = Int_format(_60_ref, got);
+                String* _1000019 = &_1000021; // ref
+                String _1000015 = String_append(_1000016, _1000019);
+                String* _1000013 = &_1000015; // ref
+                String _1000009 = String_append(_1000010, _1000013);
+                String* _1000007 = &_1000009; // ref
+                String _68 = String_copy(_1000007);
+                Result__Array__uint8_t_String _69 = Result_Error__String_Array__uint8_t(_68);
+                Result__Array__uint8_t_String _70 = _69;
+                Array_delete__uint8_t(bytes);
+                String_delete(_1000009);
+                String_delete(_1000012);
+                String_delete(_1000015);
+                String_delete(_1000018);
+                String_delete(_1000021);
+                _71 = _70;
+            }
+            _72 = _71;
+        }
+        _73 = _72;
+    }
+    else UNHANDLED("byte-reader.carp", 45);
+    return _73;
+}
+
+Result__int_String File_ByteWriter_write(File* file, Array__uint8_t* bytes) {
+    Result__int_String _8 = File_write__Array__uint8_t_MUL_(file, bytes);
+    return _8;
+}
+
+Result__int_String File_ByteWriter_write_MINUS_byte(uint8_t byte, FILE* file) {
+    Result__int_String _34;
+    /* let */ {
+        Char _11 = Char_from_MINUS_byte(byte);
+        int _12 = Char_to_MINUS_int(_11);
+        int _14 = fputc(_12, file);
+        int res = _14;
+        Result__int_String _33;
+        bool _20 = Int__EQ_(res, EOF);
+        if (_20) {
+            static String _24 = "failed to write byte to file";
+            String *_24_ref = &_24;
+            String _25 = String_copy(_24_ref);
+            Result__int_String _26 = Result_Error__String_int(_25);
+            Result__int_String _27 = _26;
+            _33 = _27;
+        } else {
+            Result__int_String _31 = Result_Success__int_String(res);
+            Result__int_String _32 = _31;
+            _33 = _32;
+        }
+        _34 = _33;
+    }
+    return _34;
+}
+
+Result__int_String File_ByteWriter_write_MINUS_bytes(File* f, Array__uint8_t* bytes) {
+    Result__int_String _72;
+    /* let */ {
+        int i = 0;
+        Result__int_String _11 = Result_Success__int_String(0);
+        Result__int_String result = _11;
+        int _19 = Array_length__uint8_t(bytes);
+        bool _20 = Int__LT_(i, _19);
+        bool _69 = _20;
+        while (_69) {
+            uint8_t* _28 = Array_unsafe_MINUS_nth__uint8_t(bytes, i);
+            uint8_t _29 = Byte_copy(_28);
+            FILE** _33 = File_file(f);
+            FILE* _34 = Pointer_copy__FILE(_33);
+            Result__int_String _35 = File_ByteWriter_write_MINUS_byte(_29, _34);
+            if(_35._tag == Result__int_String_Success_tag) {
+                Result__int_String _35_temp = _35;
+                int wildcard_37 = _35_temp.u.Success.member0;
+                // Case expr:
+                int _45 = Int__PLUS_(i, 1);
+                Result__int_String _46 = Result_Success__int_String(_45);
+                Result_delete__int_String(result);
+                result = _46;  // (Result Int String) = (Result Int String)
+            }
+            else if(_35._tag == Result__int_String_Error_tag) {
+                Result__int_String _35_temp = _35;
+                String err = _35_temp.u.Error.member0;
+                // Case expr:
+                Result__int_String _56 = Result_Error__String_int(err);
+                Result_delete__int_String(result);
+                result = _56;  // (Result Int String) = (Result Int String)
+                break;
+                // Unreachable:
+            }
+            else UNHANDLED("byte-writer.carp", 13);
+            int _66 = Int_inc(i);
+            i = _66;  // Int = Int
+            int _19 = Array_length__uint8_t(bytes);
+            bool _20 = Int__LT_(i, _19);
+            _69 = _20;
+        }
+        Result__int_String _71 = result;
+        _72 = _71;
+    }
+    return _72;
+}
+
+Result__String_String File_StringReader_read(File* file, int n) {
+    Result__String_String _8 = File_read__String(file, n);
+    return _8;
+}
+
+Result__String_String File_StringReader_read_MINUS_string(File* f, int len) {
+    Result__String_String _106;
+    bool _9 = Int__LT_(len, 0);
+    if (_9) {
+        static String _17 = "Can’t read %d characters from the file “";
+        String *_17_ref = &_17;
+        String _1000009 = Int_format(_17_ref, len);
+        String* _1000007 = &_1000009; // ref
+        static String _23 = "%s”";
+        String *_23_ref = &_23;
+        String* _26 = File_name(f);
+        String _1000012 = String_format(_23_ref, _26);
+        String* _1000010 = &_1000012; // ref
+        String _1000006 = String_append(_1000007, _1000010);
+        String* _1000004 = &_1000006; // ref
+        String _31 = String_copy(_1000004);
+        Result__String_String _32 = Result_Error__String_String(_31);
+        Result__String_String _33 = _32;
+        String_delete(_1000006);
+        String_delete(_1000009);
+        String_delete(_1000012);
+        _106 = _33;
+    } else {
+        Result__String_String _104;
+        /* let */ {
+            Char _41 = Char_from_MINUS_int(0);
+            String _42 = String_allocate(len, _41);
+            String s = _42;
+            String* _47 = &s; // ref
+            FILE** _53 = File_file(f);
+            FILE* _54 = Pointer_copy__FILE(_53);
+            int _55 = IO_Raw_fread(_47, 1, len, _54);
+            int got = _55;
+            Result__String_String _102;
+            bool _62 = Int__EQ_(got, len);
+            if (_62) {
+                Result__String_String _66 = Result_Success__String_String(s);
+                Result__String_String _67 = _66;
+                _102 = _67;
+            } else {
+                static String _75 = "Expected %d characters from the file “";
+                String *_75_ref = &_75;
+                String _1000024 = Int_format(_75_ref, len);
+                String* _1000022 = &_1000024; // ref
+                static String _83 = "%s”, but got ";
+                String *_83_ref = &_83;
+                String* _86 = File_name(f);
+                String _1000030 = String_format(_83_ref, _86);
+                String* _1000028 = &_1000030; // ref
+                static String _91 = "%d";
+                String *_91_ref = &_91;
+                String _1000033 = Int_format(_91_ref, got);
+                String* _1000031 = &_1000033; // ref
+                String _1000027 = String_append(_1000028, _1000031);
+                String* _1000025 = &_1000027; // ref
+                String _1000021 = String_append(_1000022, _1000025);
+                String* _1000019 = &_1000021; // ref
+                String _99 = String_copy(_1000019);
+                Result__String_String _100 = Result_Error__String_String(_99);
+                Result__String_String _101 = _100;
+                String_delete(_1000021);
+                String_delete(_1000024);
+                String_delete(_1000027);
+                String_delete(_1000030);
+                String_delete(_1000033);
+                String_delete(s);
+                _102 = _101;
+            }
+            Result__String_String _103 = _102;
+            _104 = _103;
+        }
+        Result__String_String _105 = _104;
+        _106 = _105;
+    }
+    return _106;
+}
+
+Result__int_String File_StringWriter_write(File* f, String* string) {
+    Result__int_String _8 = File_write__String_MUL_(f, string);
+    return _8;
+}
+
+Result__int_String File_StringWriter_write_MINUS_string(File* f, String* string) {
+    Result__int_String _49;
+    /* let */ {
+        int _9 = String_length(string);
+        int len = _9;
+        FILE** _18 = File_file(f);
+        FILE* _19 = Pointer_copy__FILE(_18);
+        int _20 = IO_Raw_fwrite(string, 1, len, _19);
+        int result = _20;
+        Result__int_String _47;
+        bool _27 = Int__LT_(result, len);
+        if (_27) {
+            static String _33 = "write error: could not write string to file %s";
+            String *_33_ref = &_33;
+            String* _36 = File_name(f);
+            String _1000008 = String_format(_33_ref, _36);
+            String* _1000006 = &_1000008; // ref
+            String _39 = String_copy(_1000006);
+            Result__int_String _40 = Result_Error__String_int(_39);
+            Result__int_String _41 = _40;
+            String_delete(_1000008);
+            _47 = _41;
+        } else {
+            Result__int_String _45 = Result_Success__int_String(result);
+            Result__int_String _46 = _45;
+            _47 = _46;
+        }
+        Result__int_String _48 = _47;
+        _49 = _48;
+    }
+    return _49;
+}
+
+void File__Lambda_map_MINUS_with__String_29_env(void *_env_raw, String* e) {
+    File__Lambda_map_MINUS_with__String_29_env_ty* _env = _env_raw;
     String _27 = (*_env->callback).env ? ((String(*)(LambdaEnv, String*))(*_env->callback).callback)((*_env->callback).env, e) : ((String(*)(String*))(*_env->callback).callback)(e);
     Array_push_MINUS_back_BANG___String(_env->res_MINUS_ref, _27);
 }
 
-Array__String File__Lambda_map_MINUS_with__String_40_env(File__Lambda_map_MINUS_with__String_40_env_ty* _env, int _) {
+Array__String File__Lambda_map_MINUS_with__String_40_env(void *_env_raw, int _) {
+    File__Lambda_map_MINUS_with__String_40_env_ty* _env = _env_raw;
     Array__String _39 = Array_copy__String(_env->res_MINUS_ref);
     return _39;
 }
@@ -8720,11 +9288,11 @@ Result__File_String File_open(String* name) {
 }
 
 Result__File_String File_open_MINUS_with(String* name, String* mode) {
-    Result__File_String _45;
+    Result__File_String _42;
     /* let */ {
         FILE* _10 = IO_Raw_fopen(name, mode);
         FILE* f = _10;
-        Result__File_String _44;
+        Result__File_String _41;
         bool _15 = null_QMARK___FILE(f);
         if (_15) {
             static String _21 = "File “%s” could not be opened!";
@@ -8735,19 +9303,18 @@ Result__File_String File_open_MINUS_with(String* name, String* mode) {
             Result__File_String _26 = Result_Error__String_File(_25);
             Result__File_String _27 = _26;
             String_delete(_1000007);
-            _44 = _27;
+            _41 = _27;
         } else {
             String _33 = String_copy(name);
             String _36 = String_copy(mode);
-            FILE* _40 = IO_Raw_fopen(name, mode);
-            File _41 = File_init(_33, _36, _40);
-            Result__File_String _42 = Result_Success__File_String(_41);
-            Result__File_String _43 = _42;
-            _44 = _43;
+            File _38 = File_init(_33, _36, f);
+            Result__File_String _39 = Result_Success__File_String(_38);
+            Result__File_String _40 = _39;
+            _41 = _40;
         }
-        _45 = _44;
+        _42 = _41;
     }
-    return _45;
+    return _42;
 }
 
 String File_prn(File *p) {
@@ -8793,72 +9360,48 @@ String File_prn(File *p) {
   return buffer;
 }
 
-Result__String_String File_read(File* f, int len) {
-    Result__String_String _57;
+Result__Array__uint8_t_String File_read__Array__uint8_t(File* f, int len) {
+    Result__Array__uint8_t_String _29;
     bool _8 = File_readable_QMARK_(f);
     if (_8) {
-        Result__String_String _41;
-        /* let */ {
-            Char _16 = Char_from_MINUS_int(0);
-            String _17 = String_allocate(len, _16);
-            String s = _17;
-            /* let */ {
-                String* _25 = &s; // ref
-                FILE** _31 = File_file(f);
-                FILE* _32 = Pointer_copy__FILE(_31);
-                int _33 = IO_Raw_fread(_25, 1, len, _32);
-                int _ = _33;
-                /* () */
-            }
-            Result__String_String _39 = Result_Success__String_String(s);
-            Result__String_String _40 = _39;
-            _41 = _40;
-        }
-        Result__String_String _42 = _41;
-        _57 = _42;
+        Result__Array__uint8_t_String _13 = File_ByteReader_read_MINUS_bytes(f, len);
+        Result__Array__uint8_t_String _14 = _13;
+        _29 = _14;
     } else {
-        static String _48 = "The file “%s” is not readable";
-        String *_48_ref = &_48;
-        String* _51 = File_name(f);
-        String _1000010 = String_format(_48_ref, _51);
-        String* _1000008 = &_1000010; // ref
-        String _54 = String_copy(_1000008);
-        Result__String_String _55 = Result_Error__String_String(_54);
-        Result__String_String _56 = _55;
-        String_delete(_1000010);
-        _57 = _56;
+        static String _20 = "The file “%s” is not readable";
+        String *_20_ref = &_20;
+        String* _23 = File_name(f);
+        String _1000007 = String_format(_20_ref, _23);
+        String* _1000005 = &_1000007; // ref
+        String _26 = String_copy(_1000005);
+        Result__Array__uint8_t_String _27 = Result_Error__String_Array__uint8_t(_26);
+        Result__Array__uint8_t_String _28 = _27;
+        String_delete(_1000007);
+        _29 = _28;
     }
-    return _57;
+    return _29;
 }
 
-Result__String_String File_read_MINUS_all(File* f) {
-    Result__String_String _47;
-    /* let */ {
-        FILE** _9 = File_file(f);
-        FILE* _10 = Pointer_copy__FILE(_9);
-        FILE* fd = _10;
-        /* let */ {
-            int _19 = fseek(fd, 0, SEEK_END);
-            int _ = _19;
-            /* () */
-        }
-        Result__String_String _45;
-        /* let */ {
-            int _27 = ftell(fd);
-            int len = _27;
-            /* let */ {
-                int _36 = fseek(fd, 0, SEEK_SET);
-                int _ = _36;
-                /* () */
-            }
-            Result__String_String _43 = File_read(f, len);
-            Result__String_String _44 = _43;
-            _45 = _44;
-        }
-        Result__String_String _46 = _45;
-        _47 = _46;
+Result__String_String File_read__String(File* f, int len) {
+    Result__String_String _29;
+    bool _8 = File_readable_QMARK_(f);
+    if (_8) {
+        Result__String_String _13 = File_StringReader_read_MINUS_string(f, len);
+        Result__String_String _14 = _13;
+        _29 = _14;
+    } else {
+        static String _20 = "The file “%s” is not readable";
+        String *_20_ref = &_20;
+        String* _23 = File_name(f);
+        String _1000007 = String_format(_20_ref, _23);
+        String* _1000005 = &_1000007; // ref
+        String _26 = String_copy(_1000005);
+        Result__String_String _27 = Result_Error__String_String(_26);
+        Result__String_String _28 = _27;
+        String_delete(_1000007);
+        _29 = _28;
     }
-    return _47;
+    return _29;
 }
 
 bool File_readable_QMARK_(File* f) {
@@ -9006,14 +9549,14 @@ WalkOptions File_walk_MINUS_mode(bool recursive_QMARK_, bool follow_MINUS_links_
 }
 
 Result__int_String File_walk_MINUS_recur(String* dname, Lambda* op, WalkOptions* spec) {
-    Result__int_String _255;
+    Result__int_String _277;
     /* let */ {
         CChar* _11 = String_cstr(dname);
         DIR* _12 = opendir(_11);
         DIR* dir = _12;
         Result__int_String _16 = Result_Success__int_String(0);
         Result__int_String res = _16;
-        Result__int_String _254;
+        Result__int_String _276;
         bool _21 = null_QMARK___DIR(dir);
         if (_21) {
             static String _27 = "Can’t open '%s'";
@@ -9025,10 +9568,10 @@ Result__int_String File_walk_MINUS_recur(String* dname, Lambda* op, WalkOptions*
             Result__int_String _33 = _32;
             Result_delete__int_String(res);
             String_delete(_1000007);
-            _254 = _33;
+            _276 = _33;
         } else {
-            bool _248 = true;
-            while (_248) {
+            bool _270 = true;
+            while (_270) {
                 /* let */ {
                     DirEntry* _41 = readdir(dir);
                     DirEntry* dent = _41;
@@ -9132,23 +9675,42 @@ Result__int_String File_walk_MINUS_recur(String* dname, Lambda* op, WalkOptions*
                                                     bool* _189 = WalkOptions_recursive_QMARK_(spec);
                                                     bool _190 = Bool_copy(_189);
                                                     if (_190) {
-                                                        Lambda _192 = { .callback = (void*)File_walk_MINUS_recur, .env = NULL, .delete = NULL, .copy = NULL }; //Sym File.walk-recur LookupRecursive
-                                                        String* _195 = &f; // ref
-                                                        _192.env ? ((void(*)(LambdaEnv, String*, Lambda*, WalkOptions*))_192.callback)(_192.env, _195, op, spec) : ((void(*)(String*, Lambda*, WalkOptions*))_192.callback)(_195, op, spec);
+                                                        /* let */ {
+                                                            Lambda _194 = { .callback = (void*)File_walk_MINUS_recur, .env = NULL, .delete = NULL, .copy = NULL }; //Sym File.walk-recur LookupRecursive
+                                                            String* _197 = &f; // ref
+                                                            Result__int_String _200 = _194.env ? ((Result__int_String(*)(LambdaEnv, String*, Lambda*, WalkOptions*))_194.callback)(_194.env, _197, op, spec) : ((Result__int_String(*)(String*, Lambda*, WalkOptions*))_194.callback)(_197, op, spec);
+                                                            Result__int_String rec = _200;
+                                                            Result__int_String* _206 = &rec; // ref
+                                                            bool _207 = Result_error_QMARK___int_String(_206);
+                                                            if (_207) {
+                                                                Result_delete__int_String(res);
+                                                                res = rec;  // (Result Int String) = (Result Int String)
+                                                                String_delete(_1000031);
+                                                                String_delete(_1000034);
+                                                                String_delete(_1000037);
+                                                                String_delete(_59);
+                                                                String_delete(f);
+                                                                break;
+                                                                // Unreachable:
+                                                            } else {
+                                                                /* () */
+                                                                Result_delete__int_String(rec);
+                                                            }
+                                                        }
                                                     } else {
                                                         /* () */
                                                     }
-                                                    bool* _208 = WalkOptions_match_MINUS_dirs_QMARK_(spec);
-                                                    bool _209 = Bool_copy(_208);
-                                                    if (_209) {
-                                                        String* _216 = &f; // ref
-                                                        (*op).env ? ((void(*)(LambdaEnv, String*))(*op).callback)((*op).env, _216) : ((void(*)(String*))(*op).callback)(_216);
+                                                    bool* _230 = WalkOptions_match_MINUS_dirs_QMARK_(spec);
+                                                    bool _231 = Bool_copy(_230);
+                                                    if (_231) {
+                                                        String* _238 = &f; // ref
+                                                        (*op).env ? ((void(*)(LambdaEnv, String*))(*op).callback)((*op).env, _238) : ((void(*)(String*))(*op).callback)(_238);
                                                     } else {
                                                         /* () */
                                                     }
                                                 } else {
-                                                    String* _230 = &f; // ref
-                                                    (*op).env ? ((void(*)(LambdaEnv, String*))(*op).callback)((*op).env, _230) : ((void(*)(String*))(*op).callback)(_230);
+                                                    String* _252 = &f; // ref
+                                                    (*op).env ? ((void(*)(LambdaEnv, String*))(*op).callback)((*op).env, _252) : ((void(*)(String*))(*op).callback)(_252);
                                                 }
                                             }
                                         }
@@ -9163,15 +9725,15 @@ Result__int_String File_walk_MINUS_recur(String* dname, Lambda* op, WalkOptions*
                         }
                     }
                 }
-                _248 = true;
+                _270 = true;
             }
             closedir(dir);
-            Result__int_String _253 = res;
-            _254 = _253;
+            Result__int_String _275 = res;
+            _276 = _275;
         }
-        _255 = _254;
+        _277 = _276;
     }
-    return _255;
+    return _277;
 }
 
 Result__int_String File_walk_MINUS_with(String* s, Lambda* callback, WalkOptions* options) {
@@ -9180,57 +9742,79 @@ Result__int_String File_walk_MINUS_with(String* s, Lambda* callback, WalkOptions
 }
 
 bool File_writable_QMARK_(File* f) {
-    bool _28;
-    String* _9 = File_mode(f);
-    int _11 = String_index_MINUS_of(_9, 119/*'w'*/);
-    bool _13 = Int__GT_(_11, -1);
-    if (_13) {
-        bool _16 = true;
-        _28 = _16;
-    } else {
-        String* _22 = File_mode(f);
-        int _24 = String_index_MINUS_of(_22, 97/*'a'*/);
-        bool _26 = Int__GT_(_24, -1);
-        bool _27 = _26;
-        _28 = _27;
+    bool _45;
+    /* let */ {
+        String* _8 = File_mode(f);
+        String* m = _8;
+        bool _44;
+        int _15 = String_index_MINUS_of(m, 43/*'+'*/);
+        bool _17 = Int__GT_(_15, -1);
+        if (_17) {
+            bool _20 = true;
+            _44 = _20;
+        } else {
+            bool _42;
+            int _27 = String_index_MINUS_of(m, 119/*'w'*/);
+            bool _29 = Int__GT_(_27, -1);
+            if (_29) {
+                bool _32 = true;
+                _42 = _32;
+            } else {
+                int _38 = String_index_MINUS_of(m, 97/*'a'*/);
+                bool _40 = Int__GT_(_38, -1);
+                bool _41 = _40;
+                _42 = _41;
+            }
+            bool _43 = _42;
+            _44 = _43;
+        }
+        _45 = _44;
     }
-    return _28;
+    return _45;
 }
 
-Result__int_String File_write(File* f, String* string) {
-    Result__int_String _52;
+Result__int_String File_write__Array__uint8_t_MUL_(File* f, Array__uint8_t* obj) {
+    Result__int_String _29;
     bool _8 = File_writable_QMARK_(f);
     if (_8) {
-        Result__int_String _36;
-        /* let */ {
-            int _14 = String_length(string);
-            int ln = _14;
-            /* let */ {
-                FILE** _26 = File_file(f);
-                FILE* _27 = Pointer_copy__FILE(_26);
-                int _28 = IO_Raw_fwrite(string, 1, ln, _27);
-                int _ = _28;
-                /* () */
-            }
-            Result__int_String _34 = Result_Success__int_String(0);
-            Result__int_String _35 = _34;
-            _36 = _35;
-        }
-        Result__int_String _37 = _36;
-        _52 = _37;
+        Result__int_String _13 = File_ByteWriter_write_MINUS_bytes(f, obj);
+        Result__int_String _14 = _13;
+        _29 = _14;
     } else {
-        static String _43 = "The file “%s” is not writable";
-        String *_43_ref = &_43;
-        String* _46 = File_name(f);
-        String _1000010 = String_format(_43_ref, _46);
-        String* _1000008 = &_1000010; // ref
-        String _49 = String_copy(_1000008);
-        Result__int_String _50 = Result_Error__String_int(_49);
-        Result__int_String _51 = _50;
-        String_delete(_1000010);
-        _52 = _51;
+        static String _20 = "The file “%s” is not writable";
+        String *_20_ref = &_20;
+        String* _23 = File_name(f);
+        String _1000007 = String_format(_20_ref, _23);
+        String* _1000005 = &_1000007; // ref
+        String _26 = String_copy(_1000005);
+        Result__int_String _27 = Result_Error__String_int(_26);
+        Result__int_String _28 = _27;
+        String_delete(_1000007);
+        _29 = _28;
     }
-    return _52;
+    return _29;
+}
+
+Result__int_String File_write__String_MUL_(File* f, String* obj) {
+    Result__int_String _29;
+    bool _8 = File_writable_QMARK_(f);
+    if (_8) {
+        Result__int_String _13 = File_StringWriter_write_MINUS_string(f, obj);
+        Result__int_String _14 = _13;
+        _29 = _14;
+    } else {
+        static String _20 = "The file “%s” is not writable";
+        String *_20_ref = &_20;
+        String* _23 = File_name(f);
+        String _1000007 = String_format(_20_ref, _23);
+        String* _1000005 = &_1000007; // ref
+        String _26 = String_copy(_1000005);
+        Result__int_String _27 = Result_Error__String_int(_26);
+        Result__int_String _28 = _27;
+        String_delete(_1000007);
+        _29 = _28;
+    }
+    return _29;
 }
 
 void FileLog_install(String* filename, int lvl) {
@@ -9257,7 +9841,7 @@ void FileLog_log_MINUS_(LogRecord* r) {
             String* _1000005 = &_1000007; // ref
             String _33 = String_copy(_1000005);
             String* _34 = &_33; // ref
-            Result__int_String _35 = File_write(_20, _34);
+            Result__int_String _35 = File_write__String_MUL_(_20, _34);
             int _36 = Result_unsafe_MINUS_from_MINUS_success__int_String(_35);
             int _ = _36;
             /* () */
@@ -9269,28 +9853,32 @@ void FileLog_log_MINUS_(LogRecord* r) {
     }
 }
 
-File__Lambda_map_MINUS_with__String_29_env_ty* File__Lambda_map_MINUS_with__String_29_env_ty_copy(File__Lambda_map_MINUS_with__String_29_env_ty* pRef) {
+void* File__Lambda_map_MINUS_with__String_29_env_ty_copy(void* pRef_raw) {
+    File__Lambda_map_MINUS_with__String_29_env_ty* pRef = pRef_raw;
     File__Lambda_map_MINUS_with__String_29_env_ty* copy = CARP_MALLOC(sizeof(*pRef));
     *copy = *pRef;
-    /* Ignore non-managed member 'callback' : (Ref (Fn [(Ref String <b>)] String <StaticLifetime>) <e>) */
-    /* Ignore non-managed member 'res_MINUS_ref' : (Ref (Array String) <e>) */
+    /* Ignore non-managed member 'callback' : (Ref (Fn [(Ref String b)] String) e) */
+    /* Ignore non-managed member 'res_MINUS_ref' : (Ref (Array String) e) */
     return copy;
 }
 
-void File__Lambda_map_MINUS_with__String_29_env_ty_delete(File__Lambda_map_MINUS_with__String_29_env_ty* p) {
-    /* Ignore non-managed member 'callback' : (Ref (Fn [(Ref String <b>)] String <StaticLifetime>) <e>) */
-    /* Ignore non-managed member 'res_MINUS_ref' : (Ref (Array String) <e>) */
+void File__Lambda_map_MINUS_with__String_29_env_ty_delete(void* p_raw) {
+    File__Lambda_map_MINUS_with__String_29_env_ty* p = p_raw;
+    /* Ignore non-managed member 'callback' : (Ref (Fn [(Ref String b)] String) e) */
+    /* Ignore non-managed member 'res_MINUS_ref' : (Ref (Array String) e) */
 }
 
-File__Lambda_map_MINUS_with__String_40_env_ty* File__Lambda_map_MINUS_with__String_40_env_ty_copy(File__Lambda_map_MINUS_with__String_40_env_ty* pRef) {
+void* File__Lambda_map_MINUS_with__String_40_env_ty_copy(void* pRef_raw) {
+    File__Lambda_map_MINUS_with__String_40_env_ty* pRef = pRef_raw;
     File__Lambda_map_MINUS_with__String_40_env_ty* copy = CARP_MALLOC(sizeof(*pRef));
     *copy = *pRef;
-    /* Ignore non-managed member 'res_MINUS_ref' : (Ref (Array String) <e>) */
+    /* Ignore non-managed member 'res_MINUS_ref' : (Ref (Array String) e) */
     return copy;
 }
 
-void File__Lambda_map_MINUS_with__String_40_env_ty_delete(File__Lambda_map_MINUS_with__String_40_env_ty* p) {
-    /* Ignore non-managed member 'res_MINUS_ref' : (Ref (Array String) <e>) */
+void File__Lambda_map_MINUS_with__String_40_env_ty_delete(void* p_raw) {
+    File__Lambda_map_MINUS_with__String_40_env_ty* p = p_raw;
+    /* Ignore non-managed member 'res_MINUS_ref' : (Ref (Array String) e) */
 }
 
 float Float_add_MINUS_ref(float* x, float* y) {
@@ -10463,14 +11051,19 @@ void Log__Lambda_NAKED_LAMBDA_14_env(LogRecord* r) {
     /* () */
 }
 
+bool Log_enabled_QMARK_(int lvl) {
+    bool _7 = _LT__EQ___int(lvl, Log_LEVEL);
+    return _7;
+}
+
 void Log_priv_MINUS_log(String msg, int lvl, String* file, int line) {
-    bool _11 = _LT__EQ___int(lvl, Log_LEVEL);
-    if (_11) {
-        String _20 = String_copy(file);
-        LogRecord _22 = LogRecord_init(lvl, msg, _20, line);
-        LogRecord* _23 = &_22; // ref
-        Log_log_MINUS_.env ? ((void(*)(LambdaEnv, LogRecord*))Log_log_MINUS_.callback)(Log_log_MINUS_.env, _23) : ((void(*)(LogRecord*))Log_log_MINUS_.callback)(_23);
-        LogRecord_delete(_22);
+    bool _10 = Log_enabled_QMARK_(lvl);
+    if (_10) {
+        String _19 = String_copy(file);
+        LogRecord _21 = LogRecord_init(lvl, msg, _19, line);
+        LogRecord* _22 = &_21; // ref
+        Log_log_MINUS_.env ? ((void(*)(LambdaEnv, LogRecord*))Log_log_MINUS_.callback)(Log_log_MINUS_.env, _22) : ((void(*)(LogRecord*))Log_log_MINUS_.callback)(_22);
+        LogRecord_delete(_21);
     } else {
         /* () */
         String_delete(msg);
@@ -11415,7 +12008,8 @@ int Pattern__Lambda_find_MINUS_all_15_env(PatternMatchResult* m) {
     return _14;
 }
 
-String Pattern__Lambda_global_MINUS_match_MINUS_str_16_env(Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty* _env, PatternMatchResult* m) {
+String Pattern__Lambda_global_MINUS_match_MINUS_str_16_env(void *_env_raw, PatternMatchResult* m) {
+    Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty* _env = _env_raw;
     Maybe__String _14 = Pattern_extract(m, _env->data);
     String _15 = Maybe_unsafe_MINUS_from__String(_14);
     return _15;
@@ -11702,15 +12296,17 @@ Array__String Pattern_split(Pattern* p, String* s) {
     return _180;
 }
 
-Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty* Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty_copy(Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty* pRef) {
+void* Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty_copy(void* pRef_raw) {
+    Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty* pRef = pRef_raw;
     Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty* copy = CARP_MALLOC(sizeof(*pRef));
     *copy = *pRef;
-    /* Ignore non-managed member 'data' : (Ref String <r19>) */
+    /* Ignore non-managed member 'data' : (Ref String r19) */
     return copy;
 }
 
-void Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty_delete(Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty* p) {
-    /* Ignore non-managed member 'data' : (Ref String <r19>) */
+void Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty_delete(void* p_raw) {
+    Pattern__Lambda_global_MINUS_match_MINUS_str_16_env_ty* p = p_raw;
+    /* Ignore non-managed member 'data' : (Ref String r19) */
 }
 
 FILE* Pointer_copy__FILE (FILE** ptrRef) {
@@ -11785,6 +12381,13 @@ Result__Array__String_String Result_Error__String_Array__String(String member0) 
     return instance;
 }
 
+Result__Array__uint8_t_String Result_Error__String_Array__uint8_t(String member0) {
+  Result__Array__uint8_t_String instance;
+    instance.u.Error.member0 = member0;
+    instance._tag = Result__Array__uint8_t_String_Error_tag;
+    return instance;
+}
+
 Result__Char_String Result_Error__String_Char(String member0) {
   Result__Char_String instance;
     instance.u.Error.member0 = member0;
@@ -11824,6 +12427,13 @@ Result__int_String Result_Error__String_int(String member0) {
   Result__int_String instance;
     instance.u.Error.member0 = member0;
     instance._tag = Result__int_String_Error_tag;
+    return instance;
+}
+
+Result__uint8_t_String Result_Error__String_uint8_t(String member0) {
+  Result__uint8_t_String instance;
+    instance.u.Error.member0 = member0;
+    instance._tag = Result__uint8_t_String_Error_tag;
     return instance;
 }
 
@@ -11873,6 +12483,13 @@ Result__Array__Uint64_int Result_Success__Array__Uint64_int(Array__Uint64 member
   Result__Array__Uint64_int instance;
     instance.u.Success.member0 = member0;
     instance._tag = Result__Array__Uint64_int_Success_tag;
+    return instance;
+}
+
+Result__Array__uint8_t_String Result_Success__Array__uint8_t_String(Array__uint8_t member0) {
+  Result__Array__uint8_t_String instance;
+    instance.u.Success.member0 = member0;
+    instance._tag = Result__Array__uint8_t_String_Success_tag;
     return instance;
 }
 
@@ -11936,6 +12553,13 @@ Result__int_String Result_Success__int_String(int member0) {
   Result__int_String instance;
     instance.u.Success.member0 = member0;
     instance._tag = Result__int_String_Success_tag;
+    return instance;
+}
+
+Result__uint8_t_String Result_Success__uint8_t_String(uint8_t member0) {
+  Result__uint8_t_String instance;
+    instance.u.Success.member0 = member0;
+    instance._tag = Result__uint8_t_String_Success_tag;
     return instance;
 }
 
@@ -12014,6 +12638,16 @@ void Result_delete__Array__Uint64_int(Result__Array__Uint64_int p) {
   }
   else if(p._tag == Result__Array__Uint64_int_Error_tag) {
     /* Ignore non-managed member 'u.Error.member0' : Int */
+  }
+
+}
+
+void Result_delete__Array__uint8_t_String(Result__Array__uint8_t_String p) {
+  if(p._tag == Result__Array__uint8_t_String_Success_tag) {
+    Array_delete__uint8_t(p.u.Success.member0);
+  }
+  else if(p._tag == Result__Array__uint8_t_String_Error_tag) {
+    String_delete(p.u.Error.member0);
   }
 
 }
@@ -12108,6 +12742,16 @@ void Result_delete__int_String(Result__int_String p) {
 
 }
 
+void Result_delete__uint8_t_String(Result__uint8_t_String p) {
+  if(p._tag == Result__uint8_t_String_Success_tag) {
+    /* Ignore non-managed member 'u.Success.member0' : Byte */
+  }
+  else if(p._tag == Result__uint8_t_String_Error_tag) {
+    String_delete(p.u.Error.member0);
+  }
+
+}
+
 bool Result_error_QMARK___FILE_MUL__String(Result__FILE_MUL__String* a) {
     bool _14;
     if(a->_tag == Result__FILE_MUL__String_Error_tag) {
@@ -12180,6 +12824,24 @@ bool Result_error_QMARK___Uint64_Array__uint8_t(Result__Uint64_Array__uint8_t* a
     return _14;
 }
 
+bool Result_error_QMARK___int_String(Result__int_String* a) {
+    bool _14;
+    if(a->_tag == Result__int_String_Error_tag) {
+        Result__int_String* _5_temp = a;
+        String* wildcard_7 = &_5_temp->u.Error.member0;
+        // Case expr:
+        _14 = true;
+    }
+    else if(a->_tag == Result__int_String_Success_tag) {
+        Result__int_String* _5_temp = a;
+        int* wildcard_11 = &_5_temp->u.Success.member0;
+        // Case expr:
+        _14 = false;
+    }
+    else UNHANDLED("Result.carp", 98);
+    return _14;
+}
+
 Array__uint8_t Result_from_MINUS_error__Uint16_Array__uint8_t(Result__Uint16_Array__uint8_t a, Array__uint8_t dflt) {
     Array__uint8_t _15;
     if(a._tag == Result__Uint16_Array__uint8_t_Success_tag) {
@@ -12235,6 +12897,27 @@ Array__uint8_t Result_from_MINUS_error__Uint64_Array__uint8_t(Result__Uint64_Arr
     }
     else UNHANDLED("Result.carp", 74);
     return _15;
+}
+
+Result__uint8_t_String Result_map__Char_String_uint8_t(Result__Char_String a, Lambda* f) {
+    Result__uint8_t_String _23;
+    if(a._tag == Result__Char_String_Success_tag) {
+        Result__Char_String _6_temp = a;
+        Char x = _6_temp.u.Success.member0;
+        // Case expr:
+        uint8_t _15 = (*f).env ? ((uint8_t(*)(LambdaEnv, Char))(*f).callback)((*f).env, x) : ((uint8_t(*)(Char))(*f).callback)(x);
+        Result__uint8_t_String _16 = Result_Success__uint8_t_String(_15);
+        _23 = _16;
+    }
+    else if(a._tag == Result__Char_String_Error_tag) {
+        Result__Char_String _6_temp = a;
+        String x = _6_temp.u.Error.member0;
+        // Case expr:
+        Result__uint8_t_String _22 = Result_Error__String_uint8_t(x);
+        _23 = _22;
+    }
+    else UNHANDLED("Result.carp", 18);
+    return _23;
 }
 
 Result__Array__String_String Result_map__int_String_Array__String(Result__int_String a, Lambda* f) {
@@ -13539,6 +14222,28 @@ WalkOptions WalkOptions_update_MINUS_recursive_QMARK_(WalkOptions p, Lambda *upd
 
 int id__int(int x) {
     return x;
+}
+
+int main(int argc, char** argv) {
+    carp_init_globals(argc, argv);
+    static String _5 = "/tmp/fl_smoke.log";
+    String *_5_ref = &_5;
+    FileLog_install(_5_ref, Log_INFO);
+    bool _11 = Log_enabled_QMARK_(Log_INFO);
+    if (_11) {
+        static String _15 = "hello from smoke";
+        String *_15_ref = &_15;
+        String _16 = String_copy(_15_ref);
+        static String _18 = "/Users/veitheller/Documents/Code/Github/carp/carpentry-org/filelog/fl_smoke.carp";
+        String *_18_ref = &_18;
+        Log_priv_MINUS_log(_16, Log_INFO, _18_ref, 5);
+    } else {
+        /* () */
+    }
+    static String _27 = "ok";
+    String *_27_ref = &_27;
+    IO_println(_27_ref);
+    return 0;
 }
 
 int max__int(int a, int b) {
